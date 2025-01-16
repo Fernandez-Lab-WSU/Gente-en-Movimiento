@@ -1,0 +1,249 @@
+---
+title: Gente En Movimiento
+format:
+  closeread-html:
+    remove-header-space: true
+    cr-style: 
+      section-background-color: '#114B5F'
+      bs-body-font-family: 'Apple Garamond'
+      poem-font-family: 'Apple Garamond'
+bibliography: references.bib
+csl: diabetologia.csl
+---
+
+# Gente En Movimiento
+## Sobre cómo los teléfonos celulares pueden ayudar a mapear la movilidad humana durante una pandemia.
+
+### Introducción
+::::{.cr-section layout="overlay-center"}
+
+:::{.progress-block}
+La aparición y persistencia de enfermedades transmitidas por vectores están determinadas por una combinación de factores ecológicos y humanos. @cr-myimage
+
+El contacto humano juega un papel crítico en la propagación de virus contagiosos como el COVID-19, especialmente en áreas urbanas con alta densidad poblacional.
+
+En 2020, el brote global de COVID-19 llevó a los gobiernos de todo el mundo a implementar cuarentenas para controlar la propagación del virus y proteger la salud pública.
+:::
+
+:::{#cr-myimage}
+![@subte](img/subte.jpg)
+
+:::
+::::
+
+
+## ¿Qué datos podemos usar para analizar la movilidad humana en el territorio?
+
+Los datos de movilidad de Meta/Facebook están disponibles para investigadores a través del programa **Data4Good**.
+
+![](img/meta_webpage.png)
+
+Puedes leer más en la [página web de `Data4Good`](https://dataforgood.facebook.com/).
+
+### ¿Qué queremos decir cuando hablamos de datos de movilidad de Meta/Facebook?
+
+::::{.cr-section layout="overlay-center"}
+
+:::{.progress-block}
+Los dispositivos móviles con una aplicación de Meta instalada pueden capturar la latitud y longitud de las ubicaciones de los usuarios en un momento específico. @cr-data
+
+Usando la ubicación de cada usuario como referencia, se puede mapear el aumento o la disminución en el número de usuarios dentro de cuadrícula específica. @cr-data
+
+:::
+
+:::{#cr-data}
+![@mujer_celular](img/mujer_celular.jpg)
+
+:::
+::::
+
+## 📱 ➡ 🗺️
+
+Nuestra variable de interés es el `cambio porcentual`, que es relativo y sus valores indican el cambio en el número de usuarios en comparación con un valor base. En este caso, el valor base corresponde a los usuarios del año anterior para la misma fecha y rango de tiempo.
+
+::::{.columns}
+
+:::{.column width="40%" #vcenter}
+
+1. Mapeado usando la **arquitectura de cuadrículas de Bing**.  
+
+
+2. Los datos se proporcionan diariamente en **períodos de 8 horas**.
+      
+  
+3. Se aplican medidas a los datos para garantizar la privacidad y mantener el anonimato. 
+
+:::
+
+:::{.column width="60%" #vcenter}
+
+![](img/tiles.jpg)
+
+:::
+:::
+
+::: {.callout-note appearance="simple" icon='false'}
+
+## Paquete de R `quadkeyr`
+
+Para convertir los datos proporcionados por Meta en una imagen que pueda superponerse a un mapa, creamos un paquete de R llamado `quadkeyr`[@quadkeyr]. Puedes leer más en la [documentación de `quadkeyr`](https://docs.ropensci.org/quadkeyr/).
+:::
+
+::: {.callout-warning appearance="simple" }
+
+La interpretación de los datos de Facebook/Meta es compleja y será analizada con mayor detalle en una próxima publicación. 
+
+:::
+
+## Caso de Estudio
+
+::::{.cr-section}
+
+:::{.progress-block}
+Este es el Área Metropolitana de Buenos Aires en Argentina. @cr-graphic
+
+El Área Metropolitana de Buenos Aires abarca aproximadamente 3,833 km² y alberga al 35% de la población del país, siendo la región más densamente habitada [@argentina_amba]. @cr-graphic
+
+:::
+
+
+:::{#cr-graphic}
+![](img/amba.png)
+:::
+::::
+
+::::{.cr-section layout="overlay-center"}
+
+:::{.progress-block}
+El primer caso de COVID-19 en Argentina se registró el 3 de marzo en un paciente que había regresado de Italia, donde había un brote significativo. @cr-myimage2
+
+El 20 de marzo, el Gobierno estableció el Aislamiento Social, Preventivo y Obligatorio, inicialmente hasta el 31 de marzo, pero luego fue extendido cinco veces, hasta el 7 de junio [@ramirez2022].
+:::
+
+:::{#cr-myimage2}
+![@covid](img/covid.jpg)
+:::
+::::
+
+::::{.cr-section}
+:::{.progress-block}
+Exploraremos los datos de movilidad de Facebook. @cr-graphic3
+
+Superponemos uno de los rásters generados, específicamente de la Fase 3 del Aislamiento Social, Preventivo y Obligatorio en mayo de 2020 [@ramirez2022]. Nota la variedad de colores en los píxeles, ¿qué representan? Vamos a profundizar. @cr-graphic3
+
+Los píxeles en tonos azules indican áreas donde la movilidad disminuyó en comparación con el mismo período del año anterior. Cuanto más oscuro el color, mayor la reducción en la movilidad. 
+
+Sin entrar en detalles, observamos dos áreas significativas donde la movilidad humana disminuyó en comparación con el mismo período en 2019. [@cr-graphic3]{pan-to="20%,-30%" scale-by="2"}.
+
+**¿Puedes imaginar a qué corresponden estas áreas?** [@cr-graphic3]{pan-to="20%,-30%" scale-by="2"}.
+:::
+
+
+
+:::{#cr-graphic3}
+![](img/amba_raster.png)
+:::
+::::
+
+
+::::{.cr-section layout="overlay-center"}
+
+:::{.progress-block}
+
+**Discurso del Presidente (fragmento)** @cr-obelisco
+
+"El Área Metropolitana de Buenos Aires es una región crítica. Es la zona más poblada, lo que la hace más susceptible al contagio porque una gran cantidad de personas vive allí.[@cuarentenamayo]" @cr-obelisco
+
+"Si uno mantiene la distancia, usa barbijo, mantiene las manos limpias en todo momento y evita tocarse la cara, las posibilidades de contagio son muy bajas. Sin embargo, estas medidas son muy difíciles de cumplir si se vive en un lugar hacinado, o si uno toma un tren o colectivo abarrotado.[@cuarentenamayo]" @cr-obelisco
+
+"En Buenos Aires, para abrir negocios o industrias, se debe solicitar permiso al gobierno, que evaluará si se cumplen las condiciones sanitarias necesarias para reanudar esa actividad (...) Las empresas que deseen reabrir deben organizar el transporte para sus trabajadores hacia el lugar de trabajo.[@cuarentenamayo]" @cr-obelisco
+
+:::
+
+:::{#cr-obelisco}
+![@obelisco](img/buenosaires_pandemia.jpg)
+:::
+::::
+
+::::{.cr-section}
+:::{.progress-block}
+Si nos movemos hacia la primera área de píxeles azules, veremos que corresponde a lo que se conoce como el Microcentro Porteño. Informalmente, el Microcentro se refiere a un área caracterizada por la concentración de edificios administrativos y oficinas. @cr-azul1
+
+El Microcentro es una zona muy concurrida, pero en la imagen ráster podemos observar que durante el aislamiento experimentó una actividad reducida [@cr-azul1]{pan-to="-20%,-30%" scale-by="2"}.
+:::
+
+
+:::{#cr-azul1}
+![](img/area_azul1.png)
+:::
+::::
+
+::::{.cr-section layout="overlay-center"}
+
+:::{.progress-block}
+
+**Fragmento de un artículo periodístico** @cr-aero
+
+"Por segundo mes consecutivo, el transporte aéreo en Argentina registró mínimos históricos en el tráfico de pasajeros debido a la pandemia de COVID-19 y las restricciones al movimiento interjurisdiccional impuestas por el gobierno nacional.[@aviacionline2020]" @cr-aero
+
+"Un total de solo 21,232 pasajeros viajaron, con 5,515 en vuelos domésticos y 15,717 en vuelos internacionales, según datos preliminares del informe mensual elaborado por la Administración Nacional de Aviación Civil.[@aviacionline2020]" @cr-aero
+:::
+
+:::{#cr-aero}
+![@aeropuerto](img/aeropuerto.jpg){width=100%}
+:::
+::::
+
+::::{.cr-section}
+:::{.progress-block}
+La segunda área con la mayor densidad de píxeles azules observada en la primera imagen corresponde al Aeropuerto Internacional Ministro Pistarini. @cr-azul2
+
+Nuevamente, en la imagen ráster, se puede observar una marcada disminución en la movilidad en esta área. [@cr-azul2]{pan-to="40%,-20%" scale-by="2"}.
+:::
+
+
+:::{#cr-azul2}
+![](img/area_azul2.png)
+:::
+::::
+
+::::{.cr-section layout="overlay-center"}
+
+:::{.progress-block}
+
+**Discurso del presidente (fragmento)** @cr-ventanas
+
+"Le pido a mis conciudadanos de la Ciudad de Buenos Aires y la provincia vecina que recuerden que esta área tiene el mayor riesgo de la pandemia, y por eso debemos ser especialmente cautelosos. No podemos salir sin una razón.[@cuarentenamayo]" @cr-ventanas
+
+"Somos nosotros quienes buscamos al virus; este no viene a buscarnos a nuestras casas. Cuanto más nos movemos, mayor es el riesgo.[@cuarentenamayo]"  @cr-ventanas
+
+"El transporte interjurisdiccional (el movimiento de personas entre ciudades) sigue prohibido, excepto para los trabajadores esenciales.[@cuarentenamayo]" @cr-ventanas
+:::
+
+:::{#cr-ventanas}
+![@ventanas](img/ventanas.jpg)
+:::
+::::
+
+
+::::{.cr-section}
+:::{.progress-block}
+Finalmente, la mayoría de las áreas sombreadas en naranja representan un aumento en la movilidad humana en comparación con los valores de referencia. @cr-naranja
+
+Esto podría indicar que las personas se están moviendo dentro de sus regiones locales o permaneciendo en casa. @cr-naranja
+:::
+
+
+:::{#cr-naranja}
+![](img/amba_raster.png)
+:::
+::::
+
+
+
+
+### Continuará...
+
+# Referencias
+
+

@@ -1,0 +1,4 @@
+project:
+  title: "closeread"
+execute:
+  freeze: auto

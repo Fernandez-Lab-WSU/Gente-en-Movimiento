@@ -1,0 +1,4 @@
+- source: MobilityMatters.qmd
+  quarto-pub:
+    - id: ad91e4e7-dde5-4375-a939-303a2bda1378
+      url: 'https://florencia.quarto.pub/mobility-matters'
