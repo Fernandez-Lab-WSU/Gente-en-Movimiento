@@ -1,6 +1,6 @@
 # Gente en Movimiento
 
-**Mobility Matters** es la versión beta de una narrativa interactiva (scrollytelling). Su objetivo es explicar cómo se puede mapear la movilidad humana utilizando datos extraídos de aplicaciones móviles y relacionarlos con el Aislamiento Social, Preventivo y Obligatorio implementado en Buenos Aires, Argentina, durante la pandemia de COVID-19.
+**Gente en Movimiento** es la versión beta de una narrativa interactiva (scrollytelling). Su objetivo es explicar cómo se puede mapear la movilidad humana utilizando datos extraídos de aplicaciones móviles y relacionarlos con el Aislamiento Social, Preventivo y Obligatorio implementado en Buenos Aires, Argentina, durante la pandemia de COVID-19.
 
 ## Código de Conducta
 
